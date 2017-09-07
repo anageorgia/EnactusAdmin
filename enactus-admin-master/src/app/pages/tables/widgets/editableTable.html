@@ -1,15 +1,19 @@
 <div class="horizontal-scroll">
   <table class="table table-bordered table-hover" st-table="editableTableData">
     <thead>
-    <tr class="sortable">
-      <th st-sort="name">Nome</th>
-      <th st-sort="area">Area</th>
-      <th st-sort="age">Presença</th>
+      <th st-sort="name" width="70%">Nome</th>
+      <th st-sort="area" width="25%">Area</th>
+      <th st-sort="age" width="5%">Presença</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in users" class="editable-tr-wrap">
-      <td><span editable-text="item.name" blur="cancel">{{item.name}}</span></td>
+      <td>
+        <span editable-text="item.name" blur="cancel">
+          <img ng-src="{{::( item.image | appImage )}}" width="20" height="20">
+          {{item.name}}
+        </span>
+      </td>
       <td><span editable-text="item.area" blur="cancel">{{item.area}}</span></td>
       <td>
           <input type="checkbox" class="checkbox-inline custom-checkbox nowrap" ng-model="item.checked" id="inlineCheckbox02" value="option2">
