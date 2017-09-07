@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enactus Admin</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+  <script>
+      // Initialize Firebase
+      var config = {
+          apiKey: "AIzaSyCqrzP4ql2kEl6qnduPbYCubNo8rbIsP3c",
+          authDomain: "enactusadmin.firebaseapp.com",
+          databaseURL: "https://enactusadmin.firebaseio.com",
+          projectId: "enactusadmin",
+          storageBucket: "enactusadmin.appspot.com",
+          messagingSenderId: "609493992310"
+      };
+      firebase.initializeApp(config);
+
+      console.log();
+      /**
+       * Handles the sign in button press.
+       */
+      function toggleSignIn() {
+          if (firebase.auth().currentUser) {
+              // [START signout]
+              firebase.auth().signOut();
+              // [END signout]
+          } else {
+              var email = document.getElementById('inputEmail3').value;
+              var password = document.getElementById('inputPassword3').value;
+              if (email.length < 4) {
+                  alert('Please enter an email address.');
+                  return;
+              }
+              if (password.length < 4) {
+                  alert('Please enter a password.');
+                  return;
+              }
+              // Sign in with email and pass.
+              // [START authwithemail]
+              firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+                  // Handle Errors here.
+                  var errorCode = error.code;
+                  var errorMessage = error.message;
+                  // [START_EXCLUDE]
+                  if (errorCode === 'auth/wrong-password') {
+                      alert('Wrong password.');
+                  } else {
+                      alert(errorMessage);
+                  }
+                  console.log(error);
+                  document.getElementById('quickstart-sign-in').disabled = false;
+                  // [END_EXCLUDE]
+              });
+              // [END authwithemail]
+          }
+          document.getElementById('quickstart-sign-in').disabled = true;
+      }
+      /**
+       * Handles the sign up button press.
+       */
+      function handleSignUp() {
+          var email = document.getElementById('email').value;
+          var password = document.getElementById('password').value;
+          if (email.length < 4) {
+              alert('Please enter an email address.');
+              return;
+          }
+          if (password.length < 4) {
+              alert('Please enter a password.');
+              return;
+          }
+          // Sign in with email and pass.
+          // [START createwithemail]
+          firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // [START_EXCLUDE]
+              if (errorCode == 'auth/weak-password') {
+                  alert('The password is too weak.');
+              } else {
+                  alert(errorMessage);
+              }
+              console.log(error);
+              // [END_EXCLUDE]
+          });
+          // [END createwithemail]
+      }
+      /**
+       * Sends an email verification to the user.
+       */
+      function sendEmailVerification() {
+          // [START sendemailverification]
+          firebase.auth().currentUser.sendEmailVerification().then(function() {
+              // Email Verification sent!
+              // [START_EXCLUDE]
+              alert('Email Verification Sent!');
+              // [END_EXCLUDE]
+          });
+          // [END sendemailverification]
+      }
+      function sendPasswordReset() {
+          var email = document.getElementById('email').value;
+          // [START sendpasswordemail]
+          firebase.auth().sendPasswordResetEmail(email).then(function() {
+              // Password Reset Email Sent!
+              // [START_EXCLUDE]
+              alert('Password Reset Email Sent!');
+              // [END_EXCLUDE]
+          }).catch(function(error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // [START_EXCLUDE]
+              if (errorCode == 'auth/invalid-email') {
+                  alert(errorMessage);
+              } else if (errorCode == 'auth/user-not-found') {
+                  alert(errorMessage);
+              }
+              console.log(error);
+              // [END_EXCLUDE]
+          });
+          // [END sendpasswordemail];
+      }
+      /**
+       * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+       *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+       *    out, and that is where we update the UI.
+       */
+      function initApp() {
+          // Listening for auth state changes.
+          // [START authstatelistener]
+          firebase.auth().onAuthStateChanged(function(user) {
+              // [START_EXCLUDE silent]
+              document.getElementById('quickstart-verify-email').disabled = true;
+              // [END_EXCLUDE]
+              if (user) {
+                  // User is signed in.
+                  var displayName = user.displayName;
+                  console.log(email);
+                  var email = user.email;
+                  var emailVerified = user.emailVerified;
+                  var photoURL = user.photoURL;
+                  var isAnonymous = user.isAnonymous;
+                  var uid = user.uid;
+                  var providerData = user.providerData;
+                  // [START_EXCLUDE]
+                  document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+                  document.getElementById('quickstart-sign-in').textContent = 'Sign out';
+                  document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+                  if (!emailVerified) {
+                      document.getElementById('quickstart-verify-email').disabled = false;
+                  }
+                  // [END_EXCLUDE]
+              } else {
+                  // User is signed out.
+                  // [START_EXCLUDE]
+                  document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+                  document.getElementById('quickstart-sign-in').textContent = 'Sign in';
+                  document.getElementById('quickstart-account-details').textContent = 'null';
+                  // [END_EXCLUDE]
+              }
+              // [START_EXCLUDE silent]
+              document.getElementById('quickstart-sign-in').disabled = false;
+              // [END_EXCLUDE]
+          });
+          // [END authstatelistener]
+          document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
+          document.getElementById('quickstart-sign-up').addEventListener('click', handleSignUp, false);
+          document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
+          document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
+      }
+      window.onload = function() {
+          initApp();
+      };
+  </script>
+
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</head>
+<body>
+<main class="auth-main">
+  <div class="auth-block">
+    <h1>Sign up to Blur Admin</h1>
+    <a href="auth.html" class="auth-link">Already have a Blur Admin account? Sign in!</a>
+
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="inputName3" class="col-sm-2 control-label">Name</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputName3" placeholder="Full Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default btn-auth" onclick="handleSignUp()">Sign up</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="auth-sep"><span><span>or Sign up with one click</span></span></div>
+
+    <div class="al-share-auth">
+      <ul class="al-share clearfix">
+        <li><i class="socicon socicon-facebook" title="Share on Facebook"></i></li>
+        <li><i class="socicon socicon-twitter" title="Share on Twitter"></i></li>
+        <li><i class="socicon socicon-google" title="Share on Google Plus"></i></li>
+      </ul>
+    </div>
+  </div>
+</main>
+</body>
+</html>
