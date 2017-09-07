@@ -40,18 +40,20 @@
                     </ba-wizard-step>
                     <ba-wizard-step title="Informações dos Membros" form="vm.productInfoForm">
                         <form name="vm.productInfoForm" novalidate>
-                            <div class="row">
-                                <div class="col-md-6">
+                            <div class="row" ng-controller="TablesPageCtrl">
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback" ng-class="{'has-error': vm.productInfoForm.productName.$invalid && (vm.productInfoForm.productName.$dirty || vm.productInfoForm.$submitted)}">
-                                        <label>Product name</label>
-                                        <div ng-include="'app/pages/form/hours/widgets/select/select.html'"></div>
+                                        <div ng-include="'app/pages/form/hours/widgets/smart/tables.html'"></div>
                                         <!--<input type="text" class="form-control" id="productName" name="productName" placeholder="Product name" ng-model="vm.productInfo.productName" required>-->
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
-
                                 </div>
-                                <div class="col-md-6">
-
+                                <div class="col-md-8">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': vm.productInfoForm.productName.$invalid && (vm.productInfoForm.productName.$dirty || vm.productInfoForm.$submitted)}">
+                                        <div ng-include="'app/pages/form/hours/widgets/smart/tables1.html'"></div>
+                                        <!--<input type="text" class="form-control" id="productName" name="productName" placeholder="Product name" ng-model="vm.productInfo.productName" required>-->
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
                                 </div>
                             </div>
                         </form>

@@ -602,59 +602,69 @@
     $scope.users = [
       {
         "id": 1,
+        "image": 'app/browsers/chrome.svg',
         "name": "Esther Vang",
         "status": 4,
         "group": 3
       },
       {
         "id": 2,
+        "image": 'app/browsers/chrome.svg',
         "name": "Leah Freeman",
         "status": 3,
         "group": 1
       },
       {
         "id": 3,
+        "image": 'app/browsers/chrome.svg',
         "name": "Mathews Simpson",
         "status": 3,
         "group": 2
       },
       {
         "id": 4,
+        "image": 'app/browsers/chrome.svg',
         "name": "Buckley Hopkins",
         "group": 4
       },
       {
         "id": 5,
+        "image": 'app/browsers/chrome.svg',
         "name": "Buckley Schwartz",
         "status": 1,
         "group": 1
       },
       {
         "id": 6,
+        "image": 'app/browsers/chrome.svg',
         "name": "Mathews Hopkins",
         "status": 4,
         "group": 2
       },
       {
         "id": 7,
+        "image": 'app/browsers/chrome.svg',
         "name": "Leah Vang",
         "status": 4,
         "group": 1
       },
       {
         "id": 8,
+        "image": 'app/browsers/chrome.svg',
         "name": "Vang Schwartz",
         "status": 4,
         "group": 2
       },
       {
         "id": 9,
+        "image": 'app/browsers/chrome.svg',
         "name": "Hopkin Esther",
         "status": 1,
         "group": 2
       },
       {
         "id": 10,
+        "image": 'app/browsers/chrome.svg',
         "name": "Mathews Schwartz",
         "status": 1,
         "group": 3
@@ -694,10 +704,10 @@
       $scope.users.splice(index, 1);
     };
 
-    $scope.addUser = function() {
+    $scope.addUser = function(name) {
       $scope.inserted = {
         id: $scope.users.length+1,
-        name: '',
+        name: name,
         status: null,
         group: null
       };

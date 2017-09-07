@@ -1,19 +1,20 @@
-<div class="add-row-editable-table">
-  <button class="btn btn-primary" ng-click="addUser()">Add row</button>
-</div>
+<!--<div class="add-row-editable-table">-->
+  <!--<button class="btn btn-primary" ng-click="addUser()">Add row</button>-->
+<!--</div>-->
 <table class="table table-bordered table-hover table-condensed">
   <tr>
-    <td></td>
-    <td>Name</td>
+    <td>#</td>
+    <td>Nome</td>
     <td>Status</td>
-    <td>Group</td>
-    <td>Actions</td>
+    <td>Atraso</td>
+    <td>Ações</td>
   </tr>
-  <tr ng-repeat="user in users" class="editable-row">
+  <tr ng-repeat="user in users | filter: {checked:true}" class="editable-row">
     <td>
-        {{$index}}
+        {{$index+1}}
     </td>
     <td>
+        <img ng-src="{{::( user.image | appImage )}}" width="20" height="20">
         <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
           {{ user.name || 'empty' }}
         </span>
@@ -42,7 +43,7 @@
       </form>
       <div class="buttons" ng-show="!rowform.$visible">
         <button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">Edit</button>
-        <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeUser($index)">Delete</button>
+        <!--<button class="btn btn-danger editable-table-button btn-xs" ng-click="removeUser($index)">Delete</button>-->
       </div>
     </td>
   </tr>
