@@ -2,10 +2,10 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.form')
-      .controller('WizardCtrl', WizardCtrl);
+      .controller('countCtrl', CountCtrl);
 
   /** @ngInject */
-  function WizardCtrl($scope) {
+  function CountCtrl($scope) {
    var vm = this;
 
     vm.personalInfo = {};
