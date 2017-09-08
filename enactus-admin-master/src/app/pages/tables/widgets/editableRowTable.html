@@ -4,20 +4,22 @@
 <table class="table table-bordered table-hover table-condensed">
   <tr>
     <td>#</td>
-    <td>Nome</td>
-    <td>Status</td>
+    <td>Membros</td>
+    <td>Desempenho</td>
     <td>Atraso</td>
     <td>Ações</td>
   </tr>
-  <tr ng-repeat="user in users | filter: {checked:true}" class="editable-row">
+  <tr ng-repeat="user in editableTableData | filter: {checked:true}" class="editable-row">
     <td>
         {{$index+1}}
     </td>
     <td>
+      <div disabled="true">
         <img ng-src="{{::( user.image | appImage )}}" width="20" height="20">
-        <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
-          {{ user.name || 'empty' }}
+        <span e-name="name" e-form="rowform" e-required>
+          {{ user.firstName || 'empty' }}
         </span>
+      </div>
     </td>
     <td class="select-td">
         <span editable-select="user.status" e-name="status" e-form="rowform" e-selectpicker
@@ -35,10 +37,10 @@
       <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline"
             shown="inserted == user">
         <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
-          Save
+          Salvar
         </button>
         <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default editable-table-button btn-xs">
-          Cancel
+          Cancelar
         </button>
       </form>
       <div class="buttons" ng-show="!rowform.$visible">

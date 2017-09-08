@@ -1,21 +1,21 @@
-<div class="horizontal-scroll">
+<div class="vertical-scroll">
   <table class="table table-bordered">
     <thead>
     <tr>
       <th class="browser-icons"></th>
-      <th>Browser</th>
-      <th class="align-right">Visits</th>
-      <th class="align-right">Purchases</th>
-      <th class="align-right">%</th>
+      <th class="align-left">Membros</th>
+      <th class="align-left">Area</th>
+      <th class="align-left">Presença</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="item in metricsTableData">
+    <tr ng-repeat="item in editableTableData">
       <td><img ng-src="{{::( item.image | appImage )}}" width="20" height="20"></td>
-      <td ng-class="nowrap">{{item.browser}}</td>
-      <td class="align-right">{{item.visits}}</td>
-      <td class="align-right">{{item.purchases}}</td>
-      <td class="align-right">{{item.percent}}</td>
+      <td class="align-left">{{item.firstName}}</td>
+      <td class="align-left">{{item.area}}</td>
+      <td class="align-left">
+        <input type="checkbox" class="checkbox-inline custom-checkbox nowrap" ng-model="item.checked" id="inlineCheckbox02" value="option2">
+      </td>
     </tr>
     </tbody>
   </table>
