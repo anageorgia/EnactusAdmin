@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "enactusadmin"
+    "default": "enactusadmin",
+    "yes": "enactusadmin"
   }
 }

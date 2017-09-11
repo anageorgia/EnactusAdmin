@@ -1,6 +1,6 @@
 {
   "database": {
-    "rules": "firebase.json"
+    "rules": {".read": true, ".write": true}
   },
   "hosting": {
     "public": "public",
