@@ -16,4 +16,5 @@
       templateUrl: 'app/pages/dashboard/trafficChart/trafficChart.html'
     };
   }
+
 })();
