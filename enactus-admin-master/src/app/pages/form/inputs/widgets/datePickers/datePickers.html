@@ -1,11 +1,10 @@
 <div class="datepicker row">
-    <div class="col-xlg-6 col-md-12 col-sm-6" ng-controller="datepickerpopupCtrl">
+    <div class="col-xlg-6 col-md-12 col-sm-6" ng-controller="countCtrl">
         <p class="input-group">
-            <input type="text" name="date" id="date" placeholder="Data" ng-model="vm.activiteInfo.date" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" required/>
+            <input type="text" name="date" id="date" placeholder="Data" ng-model="vm.hourForm.date" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" required/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
     </div>
-
 </div>
