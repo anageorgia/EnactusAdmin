@@ -4,7 +4,7 @@
 <table class="table table-bordered table-hover table-condensed">
   <tr>
     <td>#</td>
-    <td>Membros</td>
+    <td>Membros Presentes na Atividade</td>
     <td>Desempenho</td>
     <td>Atraso</td>
     <td>Ações</td>
@@ -15,9 +15,9 @@
     </td>
     <td>
       <div disabled="true">
-        <img ng-src="{{::( user.image | appImage )}}" width="20" height="20">
+        <!--<img ng-src="{{::( user.image | appImage )}}" width="20" height="20">-->
         <span e-name="name" e-form="rowform" e-required>
-          {{ user.firstName || 'empty' }}
+          {{ user.nome || 'empty' }}
         </span>
       </div>
     </td>

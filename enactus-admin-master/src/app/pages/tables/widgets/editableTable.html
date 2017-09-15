@@ -1,8 +1,8 @@
 <div class="horizontal-scroll">
   <table class="table table-bordered table-hover" st-table="editableTableData">
     <thead>
-      <th st-sort="firstName" width="70%" style="text-align: left">Membros</th>
-      <th st-sort="area" width="25%" style="text-align: left">Area</th>
+      <th st-sort="firstName" width="60%" style="text-align: left">Membros da Enactus UFAL</th>
+      <th st-sort="area" width="35%" style="text-align: left">Area</th>
       <th width="5%">Presença</th>
     </tr>
     </thead>
@@ -16,8 +16,8 @@
     <tr ng-repeat="item in editableTableData" class="editable-tr-wrap">
       <td style="text-align: left">
         <span>
-          <img ng-src="{{::( item.image | appImage )}}" width="20" height="20">
-          {{item.firstName}}
+          <!--<img ng-src="{{::( item.image | appImage )}}" width="20" height="20">-->
+          {{item.nome}}
         </span>
       </td>
       <td style="text-align: left"><span>{{item.area}}</span></td>
