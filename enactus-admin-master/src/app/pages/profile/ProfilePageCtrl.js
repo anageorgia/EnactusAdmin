@@ -8,6 +8,7 @@
     angular.module('BlurAdmin.pages.profile')
         .controller('ProfilePageCtrl', ProfilePageCtrl);
 
+
     /** @ngInject */
     function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
         $scope.picture = $filter('profilePicture')('Nasta');
@@ -20,7 +21,30 @@
         $scope.uploadPicture = function () {
             var fileInput = document.getElementById('uploadFile');
             fileInput.click();
+        };
 
+
+        $scope.a = function (nome, cpf, area, cargo, curso, anoAcademico, grau, matricula, anoGraduacao, email, senha, skype, telefone, foto, endereco) {
+            var json = {
+                nome: nome,
+                cpf: cpf,
+                area: area,
+                cargo: cargo,
+                curso: curso,
+                anoAcademico: anoAcademico,
+                grau: grau,
+                matricula: matricula,
+                anoGraduacao: anoGraduacao,
+                email: email,
+                senha: senha,
+                endereco: endereco,
+                skype: skype,
+                telefone: telefone
+            };
+
+            firebase.database().ref('Users/' + cpf).set(json);
+
+            console.log(json);
         };
 
         $scope.socialProfiles = [

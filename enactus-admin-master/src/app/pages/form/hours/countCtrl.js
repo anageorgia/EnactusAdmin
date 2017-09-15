@@ -1,11 +1,15 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.form')
+  var myapp = angular.module('BlurAdmin.pages.form')
       .controller('countCtrl', CountCtrl);
 
+    myapp.factory('Data', function(){
+        return { date: '' };
+    });
+
   /** @ngInject */
-  function CountCtrl($scope) {
+  function CountCtrl($scope, Data) {
    var vm = this;
 
     vm.personalInfo = {};

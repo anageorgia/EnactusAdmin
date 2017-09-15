@@ -21,7 +21,7 @@
                             </div>
                             <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!noPicture"></i>
                             <a href class="change-userpic" ng-click="uploadPicture()">Alterar foto de perfil</a>
-                            <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+                            <input type="file" ng-show="false" ng-model="foto" id="uploadFile" ng-file-select="onFileSelect($files)">
                         </div>
                     </div>
                 </div>
@@ -36,14 +36,14 @@
                     <label for="inputName" class="col-sm-3 control-label">Nome Completo</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputName" placeholder="" value="">
+                        <input type="text" class="form-control" id="inputName" ng-model="nome" placeholder="" value="">
                     </div>
                 </div>
                 <div class="form-group row clearfix">
                     <label for="inputCPF" class="col-sm-3 control-label">CPF</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputCPF" placeholder="000.000.000-00" value="">
+                        <input type="text" class="form-control" id="inputCPF" ng-model="cpf" placeholder="000.000.000-00" value="">
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <label class="col-sm-3 control-label">Area</label>
 
                     <div class="col-sm-9">
-                        <select class="form-control" selectpicker>
+                        <select ng-model="area" class="form-control" selectpicker>
                             <option>Projetos</option>
                             <option>Presidência</option>
                             <option>Gerência de Pessoas</option>
@@ -66,7 +66,7 @@
                     <label for="inputCargo" class="col-sm-3 control-label">Cargo</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputCargo" placeholder="" value="">
+                        <input type="text" class="form-control" ng-model="cargo" id="inputCargo" placeholder="" value="">
                     </div>
                 </div>
             </div>
@@ -78,21 +78,21 @@
                     <label for="inputCurso" class="col-sm-3 control-label">Curso</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputCurso" placeholder="" value="">
+                        <input type="text" class="form-control" ng-model="curso" id="inputCurso" placeholder="" value="">
                     </div>
                 </div>
                 <div class="form-group row clearfix">
                     <label for="inputAcademic" class="col-sm-3 control-label">Ano Acadêmico</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputAcademic" placeholder="" value="">
+                        <input type="text" class="form-control" ng-model="anoAcademico" id="inputAcademic" placeholder="" value="">
                     </div>
                 </div>
                 <div class="form-group row clearfix">
                     <label class="col-sm-3 control-label">Grau</label>
 
                     <div class="col-sm-9">
-                        <select class="form-control" selectpicker>
+                        <select ng-model="grau" class="form-control" selectpicker>
                             <option>Bacharelado</option>
                             <option>Mestrado</option>
                             <option>Doutorado</option>
@@ -106,14 +106,14 @@
                     <label for="inputMatricula" class="col-sm-3 control-label">Mátricula</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputMatricula" placeholder="" value="">
+                        <input type="text" ng-model="matricula" class="form-control" id="inputMatricula" placeholder="" value="">
                     </div>
                 </div>
                 <div class="form-group row clearfix">
                     <label for="inputGraduating" class="col-sm-3 control-label">Ano de Graduação</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputGraduating" placeholder="" value="">
+                        <input type="text" ng-model="anoGraduacao" class="form-control" id="inputGraduating" placeholder="" value="">
                     </div>
                 </div>
                 <div class="form-group row clearfix">
@@ -133,60 +133,55 @@
                         <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 
                         <div class="col-sm-9">
-                            <input type="ão" class="form-control" id="inputEmail3" placeholder="name@name.com" value="">
+                            <input type="email" ng-model="email" class="form-control" id="inputEmail3" placeholder="name@name.com" value="">
                         </div>
                     </div>
                     <div class="form-group row clearfix">
                         <label for="inputPhone" class="col-sm-3 control-label">Telefone</label>
 
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputPhone" placeholder="(xx)xxxxx-xxxx"
+                            <input type="text" ng-model="telefone" class="form-control" id="inputPhone" placeholder="(xx)xxxxx-xxxx"
                                    value="">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group row clearfix">
-                        <label class="col-sm-3 control-label">Office Location</label>
+                        <label for="inputPhone" class="col-sm-3 control-label">Endereço</label>
 
                         <div class="col-sm-9">
-                            <select class="form-control" title="Standard Select" selectpicker>
-                                <option>San Francisco</option>
-                                <option>London</option>
-                                <option>Minsk</option>
-                                <option>Tokio</option>
-                            </select>
+                            <input type="text" ng-model="endereco" class="form-control" id="inputEndereco" placeholder="Rua, Bairro e Cidade" value="">
                         </div>
                     </div>
                     <div class="form-group row clearfix">
                         <label for="inputRoom" class="col-sm-3 control-label">Skype</label>
 
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputRoom" placeholder="email ou user" value="">
+                            <input type="text" ng-model="skype" class="form-control" id="inputRoom" placeholder="email ou user" value="">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <h3 class="with-line">Change Password</h3>
+            <h3 class="with-line">Senha</h3>
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group row clearfix">
-                        <label for="inputPassword" class="col-sm-3 control-label">Password</label>
+                        <label for="inputPassword" class="col-sm-3 control-label">Senha</label>
 
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="inputPassword" placeholder=""
+                            <input type="password" ng-model="senha" class="form-control" id="inputPassword" placeholder=""
                                    value="12345678">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group row clearfix">
-                        <label for="inputConfirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+                        <label for="inputConfirmPassword" class="col-sm-3 control-label">Confirmar Senha</label>
 
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="inputConfirmPassword" placeholder="">
+                            <input type="password" ng-model="senha1"class="form-control" id="inputConfirmPassword" placeholder="">
                         </div>
                     </div>
                 </div>
@@ -261,7 +256,7 @@
             <!--</div>-->
             <!--</div>-->
             <!--</div>-->
-            <button type="button" class="btn btn-primary btn-with-icon save-profile">
+            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="a(nome, cpf, area, cargo, curso, anoAcademico, grau, matricula, anoGraduacao, email, senha, skype, telefone, foto, endereco)">
                 <i class="ion-android-checkmark-circle"></i>Criar Usuário
             </button>
         </div>

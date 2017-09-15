@@ -5,12 +5,17 @@
 (function(){
     'use strict';
 
-    angular.module('BlurAdmin.pages.form')
+    var myapp = angular.module('BlurAdmin.pages.form')
         .controller('datepickerpopupCtrl', datepickerpopupCtrl);
 
-    /** @ngInject */
-    function datepickerpopupCtrl($scope) {
+    myapp.factory('Data', function(){
+        return { date: '' };
+    });
 
+    /** @ngInject */
+    function datepickerpopupCtrl($scope, Data) {
+
+        $scope.vm.activiteInfo.date = Data;
         $scope.open = open;
         $scope.opened = false;
         $scope.formats = [ 'dd/MM/yyyy', 'dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
