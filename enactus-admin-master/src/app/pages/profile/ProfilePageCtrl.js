@@ -10,7 +10,7 @@
 
 
     /** @ngInject */
-    function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
+    function ProfilePageCtrl($scope, fileReader, $filter, $timeout, $window, $uibModal, toastr) {
         $scope.picture = $filter('profilePicture')('Nasta');
 
         $scope.removePicture = function () {
@@ -24,7 +24,7 @@
         };
 
 
-        $scope.a = function (nome, cpf, area, cargo, curso, anoAcademico, grau, matricula, anoGraduacao, email, senha, skype, telefone, foto, endereco) {
+        $scope.a = function (nome, cpf, area, cargo, curso, anoAcademico, grau, matricula, anoGraduacao, email, senha, skype, telefone, foto, endereco, atividadeAcademica) {
             var json = {
                 nome: nome,
                 cpf: cpf,
@@ -32,6 +32,7 @@
                 cargo: cargo,
                 curso: curso,
                 anoAcademico: anoAcademico,
+                // foto: foto,
                 grau: grau,
                 matricula: matricula,
                 anoGraduacao: anoGraduacao,
@@ -39,12 +40,21 @@
                 senha: senha,
                 endereco: endereco,
                 skype: skype,
-                telefone: telefone
+                telefone: telefone,
+                atividadeAcademica: atividadeAcademica
             };
 
             firebase.database().ref('Users/' + cpf).set(json);
 
             console.log(json);
+            toastr.success('Membro cadastrado com Sucesso!');
+
+            var countUp = function() {
+                $window.location.href = '#/dashboard';
+            };
+
+            $timeout(countUp, 3000);
+
         };
 
         $scope.socialProfiles = [

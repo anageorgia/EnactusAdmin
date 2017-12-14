@@ -15,7 +15,7 @@
         'BlurAdmin.pages.tables',
         'BlurAdmin.pages.charts',
         'BlurAdmin.pages.maps',
-        'BlurAdmin.pages.profile',
+        'BlurAdmin.pages.profile'
     ])
         .config(routeConfig);
 
@@ -24,8 +24,8 @@
         $urlRouterProvider.otherwise('/dashboard');
 
         baSidebarServiceProvider.addStaticItem({
-            title: 'Pages',
-            icon: 'ion-document',
+            title: 'Configurações',
+            icon: 'ion-gear-a',
             subMenu: [{
                 title: 'Sign In',
                 fixedHref: 'auth.html',
@@ -35,13 +35,15 @@
                 fixedHref: 'reg.html',
                 blank: true
             }, {
-                title: 'User Profile',
+                title: 'Criar Usuário',
                 stateRef: 'profile'
-            }, {
+            }
+            , {
                 title: '404 Page',
                 fixedHref: '404.html',
                 blank: true
-            }]
+            }
+            ]
         });
         baSidebarServiceProvider.addStaticItem({
             title: 'Menu Level 1',

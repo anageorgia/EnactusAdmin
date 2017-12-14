@@ -12,7 +12,7 @@
 
 
   /** @ngInject */
-  function CountCtrl($scope, $filter, editableOptions, editableThemes, $timeout) {
+  function CountCtrl($scope, $filter,  $window, editableOptions, editableThemes, $timeout, toastr) {
       $scope.hourForm = {};
 
       $scope.progressFunction = function() {
@@ -20,17 +20,49 @@
           return $timeout(function() {}, 3000);
       };
 
-      $scope.send = function (nome, data, inicio, termino) {
+      function diff(startH,startM, endH, endM) {
+          // start = start.split(":");
+          // end = end.split(":");
+          var startDate = new Date(0, 0, 0, startH, startM, 0);
+          var endDate = new Date(0, 0, 0, endH, endM, 0);
+          var diff = endDate.getTime() - startDate.getTime();
+          var hours = Math.floor(diff / 1000 / 60 / 60);
+          diff -= hours * 1000 * 60 * 60;
+          var minutes = Math.floor(diff / 1000 / 60);
+
+          return (hours < 9 ? "0" : "") + hours + ":" + (minutes < 9 ? "0" : "") + minutes;
+      }
+
+      $scope.send = function (nome, dataDaAtividade, inicio, termino, membros) {
+
+          var formatDate = $.datepicker.formatDate("dd-mm-yy", dataDaAtividade);
+          var membrosChecked = $filter('filter')(membros, {checked: true});
+          var duracao = diff(inicio.getHours(),inicio.getMinutes(),termino.getHours(),termino.getMinutes());
+          var myJsonString = JSON.stringify(membrosChecked);
+
+          // console.log(moment.utc(moment(inicio).diff(moment(termino))).format("HH:mm:ss"));
+          // console.log($scope.showStatus(membros));
+          // console.log($scope.showGroup(membros));
           var json = {
-              dataAtividade: data,
-              horaInicio: inicio,
-              horaTermino: termino,
+              dataAtividade:  formatDate,
+              horaInicio: inicio.getHours() + ':' + inicio.getMinutes(),
+              horaTermino: termino.getHours() + ':' + termino.getMinutes(),
               nomeAtividade: nome,
+              duracao: duracao,
+              membros: myJsonString
           };
 
-          firebase.database().ref('Atividades/ContagemDeHoras/' + data + '-' + nome).set(json);
+          firebase.database().ref('Atividades/ContagemDeHoras/' + formatDate + '|' + nome).set(json);
+          toastr.success('Horas Cadastradas com Sucesso!');
 
           console.log(json);
+
+          var countUp = function() {
+              $window.location.href = '#/dashboard';
+              $window.location.reload();
+          };
+
+          $timeout(countUp, 3000);
       };
 
 
@@ -58,7 +90,6 @@
       $scope.smartTablePageSize = 10;
 
       $scope.editableTableData = $.map(firebaseUsers, function(el) { return el });
-      console.log($scope.editableTableData);
 
       $scope.statuses = [
           {value: 1, text: 'Normal'},

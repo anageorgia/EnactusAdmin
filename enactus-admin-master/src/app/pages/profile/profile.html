@@ -117,10 +117,9 @@
                     </div>
                 </div>
                 <div class="form-group row clearfix">
-                    <label for="inputGaduating" class="col-sm-3 control-label">Algo aqui</label>
-
+                    <label for="inputGaduating" class="col-sm-3 control-label">Possui outra atividade Acadêmica? Se sim, qual?</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputGaduating" placeholder="" value="">
+                        <input type="text" class="form-control" ng-model="atividadeAcademica" id="inputGaduating" placeholder="" value="">
                     </div>
                 </div>
             </div>
@@ -256,7 +255,7 @@
             <!--</div>-->
             <!--</div>-->
             <!--</div>-->
-            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="a(nome, cpf, area, cargo, curso, anoAcademico, grau, matricula, anoGraduacao, email, senha, skype, telefone, foto, endereco)">
+            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="a(nome, cpf, area, cargo, curso, anoAcademico, grau, matricula, anoGraduacao, email, senha, skype, telefone, foto, endereco, atividadeAcademica)">
                 <i class="ion-android-checkmark-circle"></i>Criar Usuário
             </button>
         </div>
