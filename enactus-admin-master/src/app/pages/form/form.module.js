@@ -44,6 +44,30 @@
             sidebarMeta: {
                 order: 100,
             },
+        })  
+        .state('form.addMembers', {
+            url: '/addMembers',
+            templateUrl: 'app/pages/form/addMembers/addMembers.html',
+            title: 'Adicionar Membros',
+            sidebarMeta: {
+                order: 100,
+            },
+        })        
+        .state('form.createTeam', {
+            url: '/createTeam',
+            templateUrl: 'app/pages/form/createTeam/createTeam.html',
+            title: 'Criação do Time',
+            sidebarMeta: {
+                order: 100,
+            },
+        })      
+        .state('form.createCargo', {
+            url: '/createCargo',
+            templateUrl: 'app/pages/form/createCargo/createCargo.html',
+            title: 'Criação de Cargos',
+            sidebarMeta: {
+                order: 100,
+            },
         })
         .state('form.wizard',
         {
