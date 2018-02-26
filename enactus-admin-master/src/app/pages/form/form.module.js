@@ -15,7 +15,7 @@
           url: '/form',
           template : '<ui-view autoscroll="true" autoscroll-body-top></ui-view>',
           abstract: true,
-          title: 'Form Elements',
+          title: 'Formulários',
           sidebarMeta: {
             icon: 'ion-compose',
             order: 250,

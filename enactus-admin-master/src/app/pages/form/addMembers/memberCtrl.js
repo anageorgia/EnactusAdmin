@@ -1,4 +1,4 @@
-(function () {
+ (function () {
   'use strict';
 
   var config = {
@@ -33,6 +33,9 @@
               
           });
       });
+      
+      // var arrayAreas = $scope.areas.split(',');
+      // console.log(arrayAreas)
       console.log($scope.areas)
       // $scope.ares = firebase.database().ref("Times/" + "Enactus UFAL" + "/").set(arrayAreas);
       
