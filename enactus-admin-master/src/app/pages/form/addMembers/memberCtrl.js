@@ -14,10 +14,10 @@
       .controller('memberCtrl', MemberCtrl);
 
   function MemberCtrl($scope, $window, $timeout, toastr) {
-      $scope.members = [1];
+      $scope.members = [0];
 
       $scope.moreMembers = function() {
-        $scope.members.push(Math.random());
+        $scope.members.push($scope.members.length+1);
       }
 
       $scope.removeMember = function() {
@@ -33,7 +33,7 @@
               
           });
       });
-      
+
       // var arrayAreas = $scope.areas.split(',');
       // console.log(arrayAreas)
       console.log($scope.areas)
