@@ -13,7 +13,7 @@
   angular.module('BlurAdmin.pages.form')
       .controller('teamCtrl', TeamCtrl);
 
-  function TeamCtrl($scope, $filter,  $window, editableOptions, editableThemes, $timeout, toastr) {
+  function TeamCtrl($scope, $window, $timeout, toastr) {
       
       $scope.createTeam = function(name) {
         var areas = document.getElementById('areas').value;
