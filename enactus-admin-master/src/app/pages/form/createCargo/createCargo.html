@@ -6,12 +6,12 @@
           ba-panel-title="Criação dos Cargos de cada uma das suas Áreas"
           ba-panel-class="with-scroll">
         <form>
-         <div class="form-group" ng-repeat="area in areas">
-            <label for="exampleInputEmail1">Cargos da área {{area}}</label>
-            <input type="text" tag-input="primary" data-role="tagsinput" placeholder="Adicionar Cargo" style="border-style: none">
+         <div class="form-group" ng-repeat="area in areas track by $index">
+            <label for="exampleInputEmail1">Cargos da área {{nomeAreas[$index]}}</label>
+            <input type="text" tag-input="primary" data-role="tagsinput" ng-model="areas[$index].cargos" placeholder="Adicionar Cargo" style="border-style: none">
          </div>
           <br>
-          <button type="submit" class="btn btn-primary">Criar Cargos!</button>
+          <button type="submit" class="btn btn-primary" ng-click="createCargos()">Criar Cargos!</button>
           <button type="submit" class="btn btn-danger">Cancelar</button>
         </form>
       </div>

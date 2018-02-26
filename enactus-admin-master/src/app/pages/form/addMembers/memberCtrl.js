@@ -14,6 +14,7 @@
       .controller('memberCtrl', MemberCtrl);
 
   function MemberCtrl($scope, $window, $timeout, toastr) {
+      
       $scope.model = {
         index: 0,
         email: null,
@@ -26,8 +27,6 @@
       $scope.members = [$scope.model];
      
       function newMember(modelo) {
-        console.log(modelo)
-        console.log(modelo.index)
         var newModel = {
           index: modelo.index + 1,
           email: null,
@@ -47,15 +46,25 @@
         $scope.members.splice(-1,1);
       }
 
-      $scope.areas = [];
-      var ref = firebase.database().ref().child('/Times/' + "Enactus UFAL").orderByChild('wordcount');
+      $scope.nomeAreas = [];
+      var ref = firebase.database().ref().child('/Times/' + "Enactus UFAL/nomeAreas/").orderByChild('wordcount');
       ref.once('value',function(snap) {
           snap.forEach(function(item) {
               var itemVal = item.val();
-              $scope.areas.push(itemVal);
-              
+              $scope.nomeAreas.push(itemVal);
           });
       });
+        
+      $scope.generateCargos = function (index){
+        $scope.cargos = [];
+        var ref = firebase.database().ref().child('/Times/' + "Enactus UFAL/" + $scope.members[index].area +"/").orderByChild('wordcount');
+        ref.once('value',function(snap) {
+            snap.forEach(function(item) {
+                var itemVal = item.val();
+                $scope.cargos.push(itemVal);
+            });
+        });
+      }
 
       function generatePass() {
         var chars = "0123456789abcdefghijklmnopqrstuvwxyz-ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -79,36 +88,36 @@
                         alert(errorMessage);
                     }
                     console.log(error);
+                    toastr.success('Usuário criado com Sucesso!');
                 });
       }
 
       function sendEmail(email) {
         firebase.auth().sendPasswordResetEmail(email).then(function() {
-          toastr.success('Usuário criado com Sucesso!');
+          toastr.success('E-mail para alteração de senha enviado!');
         }).catch(function(error) {
-          toastr.error('Falha ao criar o usuário!');
         });
       }
 
-      // var arrayAreas = $scope.areas.split(',');
       $scope.addMember = function(index) {
           var email = $scope.members[index].email;
           var name = $scope.members[index].name;
           var isAdm = $scope.members[index].isAdm;
           var area = $scope.members[index].area;
-          // var cargo = $scope.members[index].cargo;
+          var cargo = $scope.members[index].cargo;
        
-          console.log(area);
-          
-          // createUser(email);
-          // sendEmail(email);
-          // var memberInfos = [
-          //   email: email,
-          //   area: area,
-          //   cargo: cargo,
-          //   isAdm: isAdm
-          // ];
-          // firebase.database().ref("Times/" + "Enactus UFAL" + "/Users/" + name + "/").set(memberInfos);       
+          createUser(email);
+          sendEmail(email);
+        
+          var memberInfos = {
+            nome: name,
+            email: email,
+            area: area,
+            cargo: cargo,
+            isAdm: isAdm
+          };
+
+          firebase.database().ref("Times/" + "Enactus UFAL" + "/Users/" + name + "/").set(memberInfos);       
       };    
   }
 })();

@@ -20,7 +20,7 @@
         var nomeTime = document.getElementById('nomeTime').value;
         var arrayAreas = areas.split(',');
          
-        firebase.database().ref("Times/" + nomeTime + "/").set(arrayAreas);
+        firebase.database().ref("Times/" + nomeTime + "/nomeAreas/").set(arrayAreas);
         toastr.success('Time Criado com Sucesso!');
       };    
   }

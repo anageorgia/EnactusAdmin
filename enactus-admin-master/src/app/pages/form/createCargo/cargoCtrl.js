@@ -15,25 +15,36 @@
 
   function CargoCtrl($scope, $window, $timeout, toastr) {
 
+      function newCargo(area) {
+        var json = {};
+        json[area] = {
+          cargos: null
+        };
+        return json
+      }
+
       $scope.areas = [];
-      var ref = firebase.database().ref().child('/Times/' + "Enactus UFAL").orderByChild('wordcount');
+      $scope.nomeAreas = [];
+      var ref = firebase.database().ref().child('/Times/' + "Enactus UFAL/nomeAreas/").orderByChild('wordcount');
       ref.once('value',function(snap) {
           snap.forEach(function(item) {
               var itemVal = item.val();
-              $scope.areas.push(itemVal);
+              $scope.nomeAreas.push(itemVal);
+              $scope.areas.push(newCargo(itemVal));
               
           });
       });
-      console.log($scope.areas)
-      // $scope.ares = firebase.database().ref("Times/" + "Enactus UFAL" + "/").set(arrayAreas);
       
-      $scope.createCargos = function(name) {
-      //   var areas = document.getElementById('areas').value;
-      //   var nomeTime = document.getElementById('nomeTime').value;
-      //   var arrayAreas = areas.split(',');
-         
-      //   firebase.database().ref("Times/" + nomeTime + "/").set(arrayAreas);
-      //   toastr.success('Time Criado com Sucesso!');
+      $scope.createCargos = function() {
+
+          for (var i = 0; i < $scope.areas.length; i++) {
+            var cargos = $scope.areas[i].cargos;
+            var arrayCargos = cargos.split(',');
+
+            firebase.database().ref("Times/" + 
+              "Enactus UFAL" + "/" + $scope.nomeAreas[i] + "/").set(arrayCargos);
+          }
+           toastr.success('Cargos criados com Sucesso!');
       };    
   }
 })();
