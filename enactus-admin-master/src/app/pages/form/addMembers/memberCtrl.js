@@ -11,9 +11,18 @@
       };
   
   angular.module('BlurAdmin.pages.form')
-      .controller('cargoCtrl', CargoCtrl);
+      .controller('memberCtrl', MemberCtrl);
 
-  function CargoCtrl($scope, $window, $timeout, toastr) {
+  function MemberCtrl($scope, $window, $timeout, toastr) {
+      $scope.members = [1];
+
+      $scope.moreMembers = function() {
+        $scope.members.push(Math.random());
+      }
+
+      $scope.removeMember = function() {
+        $scope.members.splice(-1,1);
+      }
 
       $scope.areas = [];
       var ref = firebase.database().ref().child('/Times/' + "Enactus UFAL").orderByChild('wordcount');
