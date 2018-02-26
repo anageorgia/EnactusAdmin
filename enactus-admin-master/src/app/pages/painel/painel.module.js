@@ -1,0 +1,25 @@
+/**
+ * @author v.lugovsky
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.pages.painel', [])
+      .config(routeConfig);
+
+  /** @ngInject */
+  function routeConfig($stateProvider) {
+    $stateProvider
+        .state('painel', {
+          url: '/painel',
+          templateUrl: 'app/pages/painel/painel.html',
+          title: 'Painel do Time',
+          sidebarMeta: {
+            icon: 'ion-android-home',
+            order: 0,
+          },
+        });
+  }
+
+})();

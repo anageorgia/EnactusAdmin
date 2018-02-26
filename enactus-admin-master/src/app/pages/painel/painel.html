@@ -1,0 +1,23 @@
+<div class="widgets" ng-controller="painelCtrl">
+  <div class="row">
+    <div class="col-md-3"
+         ba-panel
+         ba-panel-title= {{users[$index].nome}}
+         ba-panel-class="with-scroll button-panel"
+         ng-repeat="user in users">
+      
+          <div class="kameleon-icon" style="max-width:100px; max-height:50px; width: auto; height: auto">
+            <img ng-src="assets/img/theme/icon/kameleon/Batman.svg" src="assets/img/theme/icon/kameleon/Batman.svg">
+          </div>
+          <div>
+            <br>
+            <br>
+            <p>E-mail: {{users[$index].email}}</p>
+            <p>Área: {{users[$index].area}}</p>
+            <p>Cargo: {{users[$index].cargo}}</p>
+            <p>É administrador?: {{users[$index].isAdm}}</p>
+          </div>
+      <div class="button-wrapper"><button type="button" class="btn btn-info">Editar</button></div>
+    </div>
+  </div>
+</div>
