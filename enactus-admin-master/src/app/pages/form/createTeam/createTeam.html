@@ -1,0 +1,25 @@
+<div class="widgets" ng-controller="teamCtrl">
+
+    <div class="col-md-12">
+      <div
+          ba-panel
+          ba-panel-title="Criação do Time Enactus"
+          ba-panel-class="with-scroll">
+        <!-- <div ng-include="'app/pages/form/createTeam/teamForm.html'"></div> -->
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nome do Time</label>
+            <input type="text" class="form-control" id="nomeTime" ng-model="nomeTime" placeholder="Nome">
+          </div>
+         
+         <div class="form-group">
+            <label for="exampleInputEmail1">Áreas</label>
+            <input type="text" tag-input="primary" data-role="tagsinput" id="areas" ng-model="areas" placeholder="Adicionar Área" style="border-style: none">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary" ng-click="createTeam()" >Criar Time!</button>
+          <button type="submit" class="btn btn-danger">Cancelar</button>
+        </form>
+      </div>
+    </div>
+</div>

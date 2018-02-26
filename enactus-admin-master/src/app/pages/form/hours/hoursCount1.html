@@ -1,0 +1,113 @@
+<div class="widgets">
+    <div class="row" >
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Contagem de Horas" ba-panel-class="with-scroll">
+                <ba-wizard>
+                    <ba-wizard-step title="Informações da atividade" form="hourForm">
+                        <form name="hourForm" novalidate>
+                            <div class="row" ng-controller="countCtrl">
+                                <div class="col-md-6">
+                                    <div class="form-group" ng-class="{'has-error': hourForm.date.$invalid && (hourForm.date.$dirty || hourForm.$submitted)}">
+                                        <label for="date1">Data</label>
+                                        <!--<input type="password" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Confirm Password" ng-model="vm.personalInfo.confirmPassword" required>-->
+                                        <!--<span class="help-block error-block basic-block">Passwords should match</span>-->
+                                        <!--<div ng-include="'app/pages/form/inputs/widgets/datePickers/datePickers.html'"></div>-->
+                                        <div class="datepicker row">
+                                            <div class="col-xlg-6 col-md-12 col-sm-6">
+                                                <p class="input-group">
+                                                    <input type="text" name="date" id="date1" placeholder="Data" ng-model="hourForm.date" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="options" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" required/>
+                                                    <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': hourForm.name.$invalid && (hourForm.name.$dirty || hourForm.$submitted)}">
+                                        <label for="name1">Nome da Atividade</label>
+                                        <input type="text" class="form-control" id="name1" name="name" placeholder="Nome" ng-model="hourForm.name" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"  ng-class="{'has-error': (hourForm.hourBegin.$dirty || hourForm.$submitted)}">
+                                        <label for="hourBegin1">Hora Início</label>
+                                        <div class="datepicker row">
+                                            <div class="col-xlg-6 col-md-12 col-sm-6" >
+                                                <p class="input-group">
+                                                    <input type="time" name="hourBegin" id="hourBegin1" placeholder="Hora de Início" ng-model="hourForm.hourBegin" class="form-control" ng-required="true" required/>
+                                                    <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-time"></i></button>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--<input type="password" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Confirm Password" ng-model="vm.personalInfo.confirmPassword" required>-->
+                                        <!--<span class="help-block error-block basic-block">Passwords should match</span>-->
+                                        <!--<div ng-include="'app/pages/form/inputs/widgets/datePickers/hourPickers.html'"></div>-->
+                                    </div>
+                                    <div class="form-group"  ng-class="{'has-error': (hourForm.hourEnd.$dirty || hourForm.$submitted)}">
+                                        <label for="hourEnd1">Hora Término</label>
+                                        <div class="datepicker row">
+                                            <div>
+                                                <div class="col-xlg-6 col-md-12 col-sm-6">
+                                                    <p class="input-group">
+                                                        <input type="time" name="hourEnd" id="hourEnd1" placeholder="Hora de Término" ng-model="hourForm.hourEnd" class="form-control" ng-required="true" required/>
+                                                        <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-time"></i></button>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<input type="password" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Confirm Password" ng-model="vm.personalInfo.confirmPassword" required>-->
+                                        <!--<span class="help-block error-block basic-block">Passwords should match</span>-->
+                                        <!--<div ng-include="'app/pages/form/inputs/widgets/datePickers/hourEndPickers.html'"></div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="Informações dos Membros" >
+                        <div class="row">
+                            <div class="form-group has-feedback">
+                            <!--<div class="form-group has-feedback" ng-class="{'has-error': hourForm.membros.$invalid && (hourForm.membros.$dirty || hourForm.$submitted)}">-->
+                                <div ng-include="'app/pages/form/inputs/widgets/smart/tables.html'"></div>
+                                <!--<input type="text" class="form-control" id="productName" name="productName" placeholder="Product name" ng-model="vm.productInfo.productName" required>-->
+                                <!--<span class="help-block error-block basic-block">Required</span>-->
+                            </div>
+                        </div>
+                        <!--<form name="vm.productInfoForm"  novalidate>-->
+                            <!--<div class="row">-->
+                                <!--<div class="form-group has-feedback" ng-class="{'has-error': vm.productInfoForm.productName.$invalid && (vm.productInfoForm.productName.$dirty || vm.productInfoForm.$submitted)}">-->
+                                    <!--<div ng-include="'app/pages/form/hours/widgets/smart/tables.html'"></div>-->
+                                    <!--&lt;!&ndash;<input type="text" class="form-control" id="productName" name="productName" placeholder="Product name" ng-model="vm.productInfo.productName" required>&ndash;&gt;-->
+                                    <!--<span class="help-block error-block basic-block">Required</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                    </ba-wizard-step>
+                    <ba-wizard-step title="Confirmação">
+                        <div ng-controller="countCtrl">
+                            <!--<form class="form-horizontal" name="finishForm" novalidate>-->
+                                <button progress-button="progressFunction()" class="btn btn-success">Submit</button>
+                            Nome: {{hourForm.name}}
+                            Data: {{hourForm.date}}
+                            Hora de Inicio: {{hourForm.hourBegin}}
+                            Hora de Termino: {{hourForm.hourEnd}}
+                            Congratulations! You have successfully filled the form!
+                            <!--</form>-->
+                        </div>
+                    </ba-wizard-step>
+                </ba-wizard>
+                <!--Nome: {{name}}-->
+                <!--Data: {{date}}-->
+                <!--Hora de Inicio: {{hourBegin}}-->
+                <!--Hora de Termino: {{hourEnd}}-->
+
+            </div>
+        </div>
+    </div>
+
+</div>
