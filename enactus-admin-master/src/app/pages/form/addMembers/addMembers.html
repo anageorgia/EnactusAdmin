@@ -16,16 +16,16 @@
 	    		<br>
 	    	</div>
 
-	    	<div ng-repeat="member in members">
+	    	<div ng-repeat="member in members track by $index">
 	    		<div class="form-group col-sm-3 col-xs-3">
-	    		  <input type="text" class="form-control" id="nameMember" ng-model="member.nomeMember" placeholder="Nome do Membro">
+	    		  <input type="text" class="form-control" id="member.name" ng-model="members[$index].name" placeholder="Nome do Membro">
 	    		</div>
 	    		<div class="form-group col-sm-3 col-xs-3">
-	    		  <input type="email" class="form-control" id="emailMember" ng-model="member.emailMember" placeholder="E-mail">
+	    		  <input type="email" class="form-control" id="member.email" ng-model="members[$index].email" placeholder="E-mail">
 	    		</div>
 
 	    		<div class="form-group">
-	    		  <ui-select ng-model="member.areaMember"
+	    		  <ui-select ng-model="members[$index].area"
 	    		             class="btn-group bootstrap-select form-control"
 	    		             ng-disabled="false"
 	    		             append-to-body="true"
@@ -39,7 +39,7 @@
 	    		  </ui-select>
 	    		</div>
 
-	    		<div class="form-group">
+	    		<!-- <div class="form-group">
 	    		  <ui-select ng-model="selectpickerVm.selectedItem.selected"
 	    		             class="btn-group bootstrap-select form-control"
 	    		             ng-disabled="false"
@@ -53,15 +53,15 @@
 	    		    </ui-select-choices>
 	    		  </ui-select>
 	    		</div>
-
+ -->
 	    		<div class="checkbox">
 	    		  <label class="custom-checkbox">
-	    		    <input type="checkbox" ng-model="member.isAdmMember" id="isAdmMember" >
+	    		    <input type="checkbox" ng-model="members[$index].isAdm" id="isAdm" >
 	    		    <span>
 	    		    É administrador?</span>
 	    		  </label>
 	    		</div>
-	    		<button type="submit" class="btn btn-primary" ng-click="criarMembro()">Criar Membro!</button>
+	    		<button type="submit" class="btn btn-primary" ng-click="addMember($index)">Criar Membro!</button>
 	    		<br>
 	   			<br>	
 	    	</div>	

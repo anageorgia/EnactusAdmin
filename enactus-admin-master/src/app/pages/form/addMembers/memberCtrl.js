@@ -14,10 +14,33 @@
       .controller('memberCtrl', MemberCtrl);
 
   function MemberCtrl($scope, $window, $timeout, toastr) {
-      $scope.members = [0];
+      $scope.model = {
+        index: 0,
+        email: null,
+        name: null, 
+        cargo: null,
+        area: null,
+        isAdm: null
+      }
+      
+      $scope.members = [$scope.model];
+     
+      function newMember(modelo) {
+        console.log(modelo)
+        console.log(modelo.index)
+        var newModel = {
+          index: modelo.index + 1,
+          email: null,
+          name: null,
+          cargo: null,
+          area: null, 
+          isAdm: null
+        }
+        return newModel
+      }
 
       $scope.moreMembers = function() {
-        $scope.members.push($scope.members.length+1);
+        $scope.members.push(newMember($scope.members));
       }
 
       $scope.removeMember = function() {
@@ -34,18 +57,58 @@
           });
       });
 
+      function generatePass() {
+        var chars = "0123456789abcdefghijklmnopqrstuvwxyz-ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var pass = "";
+
+        for (let i = 0; i < 32; i++) {
+          pass += chars[Math.floor(Math.random() * chars.length)];
+        }
+
+        return pass;
+      }
+
+      function createUser(email){
+         firebase.auth().createUserWithEmailAndPassword(email, generatePass())
+                .catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    if (errorCode == 'auth/weak-password') {
+                        alert('The password is too weak.');
+                    } else {
+                        alert(errorMessage);
+                    }
+                    console.log(error);
+                });
+      }
+
+      function sendEmail(email) {
+        firebase.auth().sendPasswordResetEmail(email).then(function() {
+          toastr.success('Usuário criado com Sucesso!');
+        }).catch(function(error) {
+          toastr.error('Falha ao criar o usuário!');
+        });
+      }
+
       // var arrayAreas = $scope.areas.split(',');
-      // console.log(arrayAreas)
-      console.log($scope.areas)
-      // $scope.ares = firebase.database().ref("Times/" + "Enactus UFAL" + "/").set(arrayAreas);
-      
-      $scope.createCargos = function(name) {
-      //   var areas = document.getElementById('areas').value;
-      //   var nomeTime = document.getElementById('nomeTime').value;
-      //   var arrayAreas = areas.split(',');
-         
-      //   firebase.database().ref("Times/" + nomeTime + "/").set(arrayAreas);
-      //   toastr.success('Time Criado com Sucesso!');
+      $scope.addMember = function(index) {
+          var email = $scope.members[index].email;
+          var name = $scope.members[index].name;
+          var isAdm = $scope.members[index].isAdm;
+          var area = $scope.members[index].area;
+          // var cargo = $scope.members[index].cargo;
+       
+          console.log(area);
+          
+          // createUser(email);
+          // sendEmail(email);
+          // var memberInfos = [
+          //   email: email,
+          //   area: area,
+          //   cargo: cargo,
+          //   isAdm: isAdm
+          // ];
+          // firebase.database().ref("Times/" + "Enactus UFAL" + "/Users/" + name + "/").set(memberInfos);       
       };    
   }
 })();
